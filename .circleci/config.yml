@@ -35,3 +35,10 @@ jobs:
 
       # run tests!
       - run: npm test
+
+      - deploy:
+          name: Deploy if master
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master"  ]; then
+              ./node_modules/.bin/sync-glitch
+            fi
